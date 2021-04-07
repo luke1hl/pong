@@ -26,5 +26,11 @@
         Return leftscore
     End Function
 
+    Sub setlastpoint(input As Integer)
+        lastPoint = input
+    End Sub
+    Function returnlastpoint()
+        Return lastPoint
+    End Function
 
 End Class

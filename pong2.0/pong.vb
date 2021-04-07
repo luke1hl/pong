@@ -9,9 +9,7 @@
 
     Dim breakCount As Integer = 0 'counter for tmrBreak clock ticks
 
-    Dim intLCourt, intRcourt, intTCourt, intBCourt, intCCourt As Integer
 
-    'left, right, top and bottom boundaries of court
 
 
 

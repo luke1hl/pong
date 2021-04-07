@@ -240,18 +240,16 @@
             Pause.Text = "resume"
             balltimer.Enabled = False
             paddletimer.Enabled = False
+            paused = True
         Else
             Pause.Text = "pause"
             balltimer.Enabled = True
             paddletimer.Enabled = True
-
+            paused = False
         End If
     End Sub
 
     Private Sub reset_Click(sender As Object, e As EventArgs) Handles reset.Click
-        Dim newgame As New pong
-
-
-        newgame.Visible = True
+        Application.Restart()
     End Sub
 End Class

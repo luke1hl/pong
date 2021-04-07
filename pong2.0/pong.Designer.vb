@@ -98,9 +98,9 @@ Partial Class pong
         'play
         '
         Me.play.BackColor = System.Drawing.Color.GreenYellow
-        Me.play.Location = New System.Drawing.Point(566, 506)
+        Me.play.Location = New System.Drawing.Point(726, 13)
         Me.play.Name = "play"
-        Me.play.Size = New System.Drawing.Size(75, 23)
+        Me.play.Size = New System.Drawing.Size(137, 96)
         Me.play.TabIndex = 6
         Me.play.Text = "play"
         Me.play.UseVisualStyleBackColor = False
@@ -108,9 +108,9 @@ Partial Class pong
         'Pause
         '
         Me.Pause.BackColor = System.Drawing.Color.LawnGreen
-        Me.Pause.Location = New System.Drawing.Point(485, 506)
+        Me.Pause.Location = New System.Drawing.Point(726, 103)
         Me.Pause.Name = "Pause"
-        Me.Pause.Size = New System.Drawing.Size(75, 23)
+        Me.Pause.Size = New System.Drawing.Size(137, 97)
         Me.Pause.TabIndex = 7
         Me.Pause.Text = "pause"
         Me.Pause.UseVisualStyleBackColor = False
@@ -118,9 +118,9 @@ Partial Class pong
         'reset
         '
         Me.reset.BackColor = System.Drawing.Color.Lime
-        Me.reset.Location = New System.Drawing.Point(404, 506)
+        Me.reset.Location = New System.Drawing.Point(726, 197)
         Me.reset.Name = "reset"
-        Me.reset.Size = New System.Drawing.Size(75, 23)
+        Me.reset.Size = New System.Drawing.Size(137, 95)
         Me.reset.TabIndex = 8
         Me.reset.Text = "reset"
         Me.reset.UseVisualStyleBackColor = False
@@ -128,9 +128,11 @@ Partial Class pong
         'Escape
         '
         Me.Escape.BackColor = System.Drawing.Color.Red
-        Me.Escape.Location = New System.Drawing.Point(12, 502)
+        Me.Escape.Font = New System.Drawing.Font("Microsoft Sans Serif", 72.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Escape.ForeColor = System.Drawing.Color.White
+        Me.Escape.Location = New System.Drawing.Point(726, 360)
         Me.Escape.Name = "Escape"
-        Me.Escape.Size = New System.Drawing.Size(36, 31)
+        Me.Escape.Size = New System.Drawing.Size(137, 132)
         Me.Escape.TabIndex = 9
         Me.Escape.Text = "X"
         Me.Escape.UseVisualStyleBackColor = False
@@ -152,7 +154,7 @@ Partial Class pong
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(664, 541)
+        Me.ClientSize = New System.Drawing.Size(911, 541)
         Me.Controls.Add(Me.Escape)
         Me.Controls.Add(Me.reset)
         Me.Controls.Add(Me.Pause)
@@ -164,6 +166,7 @@ Partial Class pong
         Me.Controls.Add(Me.baller)
         Me.Controls.Add(Me.pingpongtable)
         Me.Name = "pong"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "pong"
         CType(Me.pingpongtable, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

@@ -5,25 +5,16 @@
     Private ballers As New Cball
     Private scorer As New Cscore
     Private counter As Integer = 0 'counts everytime game ends
-    Private paused As Boolean = False
-
-
-    Dim upFlag As Boolean = False 'True when left mouse button held down
-
-    Dim dnFlag As Boolean = False 'True when right mouse button held down
-
-
-
-
+    Private paused As Boolean = False 'detects wether or not the game is paused
 
 
 
     Private Sub pong_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        ballers.setballwidth(baller.Width)
+        ballers.setballwidth(baller.Width) 'sets the variables for the size of the ball
         ballers.setballheight(baller.Height)
 
-        courter.setleftbound(pingpongtable.Left + 5)
+        courter.setleftbound(pingpongtable.Left + 5) 'sets where the boarders are for the ping pong table
         courter.setrightbound(pingpongtable.Left + pingpongtable.Width - 5)
         courter.settopbound(pingpongtable.Top + 5)
         courter.setbottombound(pingpongtable.Top + pingpongtable.Height - 5)
@@ -76,13 +67,7 @@
             leftpaddle.Top = (courter.returnbottombound - paddler.returnlefth)
         End If
 
-        If upFlag = True And rightpaddle.Top > courter.returntopbound Then
-            'left mouse button is down and left paddle is not at top of court
-            rightpaddle.Top -= 4 'move right paddle up 4 pixels
-        ElseIf dnFlag = True And rightpaddle.Top < (courter.returnbottombound - paddler.returnrighth) Then
-            'right mouse button is down and left paddle is not at bottom of court
-            rightpaddle.Top += 4 'move right paddle down 4 pixels
-        End If
+
         'make sure right paddle is between top and bottom boundaries of court
         If rightpaddle.Top < courter.returntopbound Then
             rightpaddle.Top = courter.returntopbound
@@ -152,7 +137,7 @@
                 'vertical coordinates of ball and right paddle overlap
                 If (baller.Left + ballers.returnballwidth) > rightpaddle.Left Then
                     'ball has made contact with right paddle
-                    zoneselection() 'get section of right paddle making contact with ball
+
                     'change direction of ball and generate x and y vector values for ball
                     'depending on calculated paddleZone value (+3 to -3)
                     Select Case paddler.returnpaddlezone()
@@ -189,36 +174,46 @@
             End If
         End If
     End Sub
-    Private Function zoneselection()
 
-    End Function
     Private Sub scoreapoint()
-
-    End Sub
-
-    Private Sub endofround_Tick(sender As Object, e As EventArgs) Handles endofround.Tick
-        counter += 1
-        If counter = 1 Then
-            leftpaddle.Top = paddler.returnlefttop 'reset left paddle position
-            rightpaddle.Top = paddler.returnrighttop 'reset right paddle position
-
-            baller.Top = rightpaddle.Top + paddler.returnrighth / 2 - ballers.returnballheight / 2
-            'position ball in line with centre of right paddle
-            baller.Left = paddler.returnrightface - baller.Width
-            'place ball immediately to left of right paddle
-            ballers.setvelx(-5) 'set ball's x vector value to -5
-            'generate random y vector value for ball (5 to -5
-            Randomize()
-            ballers.setvely((Rnd() * 10) - 5)
-        ElseIf counter = 2 Then 'this is second timer tick
-            counter = 0 'reset timer counter
-            baller.Visible = True 'restore visibility of ball
-
-            balltimer.Enabled = True 'restart tmrBall
-            paddletimer.Enabled = True 'restart tmrPaddle
-            endofround.Enabled = False 'stop tmrBreak
+        balltimer.Enabled = False
+        paddletimer.Enabled = False
+        If baller.Left < paddler.returnleftface Then
+            scorer.setrightscore(scorer.returnrightscore + 1)
+            rightpaddlescore.Text += 1
+        ElseIf baller.Left + ballers.returnballwidth > paddler.returnrightface Then
+            scorer.setleftscore(scorer.returnleftscore + 1)
+            leftpaddlescore.Text += 1
+        End If
+        baller.Visible = False
+        If scorer.returnleftscore = 10 Then
+            MsgBox("computer wins")
+            Application.Restart()
+        ElseIf scorer.returnrightscore = 10 Then
+            MsgBox("user wins")
+            Application.Restart()
+        Else
+            endofround()
         End If
     End Sub
+    Private Sub endofround()
+        leftpaddle.Top = paddler.returnlefttop 'reset left paddle position
+        rightpaddle.Top = paddler.returnrighttop 'reset right paddle position
+
+        baller.Top = rightpaddle.Top + paddler.returnrighth / 2 - ballers.returnballheight / 2
+        'position ball in line with centre of right paddle
+        baller.Left = paddler.returnrightface - baller.Width
+        'place ball immediately to left of right paddle
+        ballers.setvelx(-5) 'set ball's x vector value to -5
+        'generate random y vector value for ball (5 to -5
+        Randomize()
+        ballers.setvely((Rnd() * 10) - 5)
+        baller.Visible = True 'restore visibility of ball
+
+        balltimer.Enabled = True 'restart tmrBall
+        paddletimer.Enabled = True 'restart tmrPaddle
+    End Sub
+
 
     Private Sub play_Click(sender As Object, e As EventArgs) Handles play.Click
         baller.Top = rightpaddle.Top + paddler.returnrighth / 2 - ballers.returnballheight / 2
@@ -247,9 +242,26 @@
             paddletimer.Enabled = True
             paused = False
         End If
+
     End Sub
 
     Private Sub reset_Click(sender As Object, e As EventArgs) Handles reset.Click
         Application.Restart()
     End Sub
+
+    Private Sub Escape_Click(sender As Object, e As EventArgs) Handles Escape.Click
+        Me.Close()
+    End Sub
+
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, ByVal keyData As Keys) As Boolean
+        If balltimer.Enabled = True Then
+            If keyData = Keys.Up Then
+                rightpaddle.Top -= 10
+            End If
+            If keyData = Keys.Down Then
+                rightpaddle.Top += 10
+            End If
+        End If
+
+    End Function
 End Class

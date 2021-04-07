@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class pong
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class pong
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.baller = New System.Windows.Forms.Label()
@@ -35,7 +35,6 @@ Partial Class pong
         Me.Escape = New System.Windows.Forms.Button()
         Me.balltimer = New System.Windows.Forms.Timer(Me.components)
         Me.paddletimer = New System.Windows.Forms.Timer(Me.components)
-        Me.endofround = New System.Windows.Forms.Timer(Me.components)
         CType(Me.pingpongtable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -57,8 +56,8 @@ Partial Class pong
         '
         'pingpongtable
         '
-        Me.pingpongtable.ErrorImage = Global.pong2._0.My.Resources.Resources.pong_table1
-        Me.pingpongtable.Image = Global.pong2._0.My.Resources.Resources.pong_table1
+        Me.pingpongtable.BackColor = System.Drawing.Color.Black
+        Me.pingpongtable.ErrorImage = Nothing
         Me.pingpongtable.Location = New System.Drawing.Point(12, 12)
         Me.pingpongtable.Name = "pingpongtable"
         Me.pingpongtable.Size = New System.Drawing.Size(640, 480)
@@ -145,10 +144,6 @@ Partial Class pong
         '
         Me.paddletimer.Interval = 10
         '
-        'endofround
-        '
-        Me.endofround.Interval = 3000
-        '
         'pong
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -186,5 +181,4 @@ Partial Class pong
     Friend WithEvents Escape As Button
     Friend WithEvents balltimer As Timer
     Friend WithEvents paddletimer As Timer
-    Friend WithEvents endofround As Timer
 End Class

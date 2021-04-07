@@ -17,9 +17,7 @@
 
 
 
-    Dim intPadLTop, intPadRTop As Integer 'initial y coordinate for top of paddles
 
-    Dim intPadFaceL, intPadFaceR 'x coordinates for contact surfaces of left and right paddles
 
     Private Sub pong_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 

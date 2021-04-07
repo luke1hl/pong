@@ -20,13 +20,13 @@
         courter.setbottombound(pingpongtable.Top + pingpongtable.Height - 5)
         courter.setcentercourt(pingpongtable.Left + pingpongtable.Width / 2)
 
-        paddler.setlefth(leftpaddle.Height)
+        paddler.setlefth(leftpaddle.Height) 'sets the height of the paddles
         paddler.setrighth(rightpaddle.Height)
 
-        paddler.setlefttop(pingpongtable.Top + pingpongtable.Height / 2 - leftpaddle.Height / 2)
+        paddler.setlefttop(pingpongtable.Top + pingpongtable.Height / 2 - leftpaddle.Height / 2) 'sets the y coordinate of the top of the paddle
         paddler.setrighttop(pingpongtable.Top + pingpongtable.Height / 2 - rightpaddle.Height / 2)
 
-        paddler.setleftface(leftpaddle.Left + leftpaddle.Width)
+        paddler.setleftface(leftpaddle.Left + leftpaddle.Width) 'sets the x coordinate for the face of paddle
         paddler.setrightface(rightpaddle.Left)
 
     End Sub
@@ -46,13 +46,14 @@
                     leftpaddle.Top -= 4 'move left paddle up 
                 End If
             End If
-        Else 'ball is not in left court or is moving away from left paddle
+
+        Else 'return paddle to initial position if ball not on left or moving towards it
             If leftpaddle.Top < paddler.returnlefttop Then
-                'left paddle is above initial start position
-                leftpaddle.Top += 1 'move paddle down by 1 pixel
+
+                leftpaddle.Top += 1
             ElseIf leftpaddle.Top > paddler.returnlefttop Then
-                'left paddle is below initial start position
-                leftpaddle.Top -= 1 'move paddle up by 1 pixel
+
+                leftpaddle.Top -= 1
             End If
         End If
 

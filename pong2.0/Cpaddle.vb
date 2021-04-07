@@ -1,11 +1,11 @@
 ﻿Public Class Cpaddle
-    Protected paddleZone As Integer 'section of paddle that detects when the ball hits
+    Protected paddleZone As Integer 'the paddlezone
     Protected lefth As Integer
     Protected righth As Integer 'left and right paddle heights
     Protected lefttop As Integer
-    Protected righttop As Integer 'initial y coordinate for top of paddles
+    Protected righttop As Integer 'y coordinate for the top of the paddle
     Protected leftface As Integer
-    Protected rightface As Integer 'x coordinates for contact surfaces of left and right paddles
+    Protected rightface As Integer 'x coordinates face of paddle
 
     Sub setpaddlezone(input As Integer)
         paddleZone = input

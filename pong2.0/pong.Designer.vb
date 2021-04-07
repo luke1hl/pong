@@ -35,7 +35,7 @@ Partial Class pong
         Me.Escape = New System.Windows.Forms.Button()
         Me.balltimer = New System.Windows.Forms.Timer(Me.components)
         Me.paddletimer = New System.Windows.Forms.Timer(Me.components)
-        Me.Break = New System.Windows.Forms.Timer(Me.components)
+        Me.endofround = New System.Windows.Forms.Timer(Me.components)
         CType(Me.pingpongtable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -143,9 +143,9 @@ Partial Class pong
         '
         Me.paddletimer.Interval = 10
         '
-        'Break
+        'endofround
         '
-        Me.Break.Interval = 3000
+        Me.endofround.Interval = 3000
         '
         'pong
         '
@@ -183,5 +183,5 @@ Partial Class pong
     Friend WithEvents Escape As Button
     Friend WithEvents balltimer As Timer
     Friend WithEvents paddletimer As Timer
-    Friend WithEvents Break As Timer
+    Friend WithEvents endofround As Timer
 End Class

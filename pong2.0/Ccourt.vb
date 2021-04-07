@@ -1,5 +1,4 @@
 ﻿Public Class Ccourt
-    Dim intLCourt, intRcourt, intTCourt, intBCourt, intCCourt As Integer
     Protected leftbound As Integer
     Protected topbound As Integer
     Protected rightbound As Integer

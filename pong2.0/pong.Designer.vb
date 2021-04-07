@@ -23,7 +23,7 @@ Partial Class pong
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.ball = New System.Windows.Forms.Label()
+        Me.baller = New System.Windows.Forms.Label()
         Me.leftpaddle = New System.Windows.Forms.Label()
         Me.pingpongtable = New System.Windows.Forms.PictureBox()
         Me.rightpaddle = New System.Windows.Forms.Label()
@@ -39,13 +39,13 @@ Partial Class pong
         CType(Me.pingpongtable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'ball
+        'baller
         '
-        Me.ball.BackColor = System.Drawing.Color.LawnGreen
-        Me.ball.Location = New System.Drawing.Point(324, 244)
-        Me.ball.Name = "ball"
-        Me.ball.Size = New System.Drawing.Size(16, 16)
-        Me.ball.TabIndex = 1
+        Me.baller.BackColor = System.Drawing.Color.LawnGreen
+        Me.baller.Location = New System.Drawing.Point(324, 244)
+        Me.baller.Name = "baller"
+        Me.baller.Size = New System.Drawing.Size(16, 16)
+        Me.baller.TabIndex = 1
         '
         'leftpaddle
         '
@@ -161,7 +161,7 @@ Partial Class pong
         Me.Controls.Add(Me.leftpaddlescore)
         Me.Controls.Add(Me.rightpaddle)
         Me.Controls.Add(Me.leftpaddle)
-        Me.Controls.Add(Me.ball)
+        Me.Controls.Add(Me.baller)
         Me.Controls.Add(Me.pingpongtable)
         Me.Name = "pong"
         Me.Text = "pong"
@@ -172,7 +172,7 @@ Partial Class pong
     End Sub
 
     Friend WithEvents pingpongtable As PictureBox
-    Friend WithEvents ball As Label
+    Friend WithEvents baller As Label
     Friend WithEvents leftpaddle As Label
     Friend WithEvents rightpaddle As Label
     Friend WithEvents leftpaddlescore As Label

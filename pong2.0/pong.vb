@@ -1,6 +1,5 @@
 ﻿Public Class pong
 
-    Dim paddleZone As Integer 'section of paddle that detects when the ball hits
 
     Dim winScore As Integer = 11 'score that must be attained to win game
 
@@ -16,9 +15,7 @@
 
     'left, right, top and bottom boundaries of court
 
-    Dim intBallW, intBallH As Integer 'ball width and height
 
-    Dim intPadLH, intPadRH As Integer 'left and right paddle heights
 
     Dim intPadLTop, intPadRTop As Integer 'initial y coordinate for top of paddles
 

@@ -1,9 +1,7 @@
 ﻿Public Class pong
 
 
-    Dim winScore As Integer = 11 'score that must be attained to win game
 
-    Dim scoreLeft, scoreRight, lastPoint As Integer 'game scores and last player to score
 
     Dim upFlag As Boolean = False 'True when left mouse button held down
 

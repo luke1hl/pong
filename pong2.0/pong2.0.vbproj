@@ -74,6 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cball.vb" />
+    <Compile Include="Ccourt.vb" />
+    <Compile Include="Cpaddle.vb" />
+    <Compile Include="Cscore.vb" />
     <Compile Include="pong.vb">
       <SubType>Form</SubType>
     </Compile>

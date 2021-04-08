@@ -6,7 +6,7 @@
     Private scorer As New Cscore
     Private counter As Integer = 0 'counts everytime game ends
     Private paused As Boolean = False 'detects wether or not the game is paused
-    Private hacks As Boolean = False
+    Private hacks As Boolean = False 'used to activate user hacks
 
 
     Private Sub pong_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -31,10 +31,99 @@
 
     End Sub
 
+    Private Sub balltimer_Tick(sender As Object, e As EventArgs) Handles balltimer.Tick
+        baller.Top = baller.Top + ballers.returnvely 'each tick it moves the ball by the x velocity and the y velocity
+        baller.Left = baller.Left + ballers.returnvelx
 
+
+        If baller.Top < courter.returntopbound Then
+            baller.Top = courter.returntopbound
+        End If
+        If baller.Top > (courter.returnbottombound - ballers.returnballheight) Then
+            baller.Top = (courter.returnbottombound - ballers.returnballheight)
+        End If
+
+
+        If baller.Top <= courter.returntopbound Or baller.Top >= (courter.returnbottombound - ballers.returnballheight) Then
+            ballers.setvely(-1 * ballers.returnvely) 'flips the vertical vector of the ball when it hits the boundry
+        End If
+
+        If ballers.returnvelx < 0 Then 'ball is moving from right to left
+            If baller.Top > (leftpaddle.Top - ballers.returnballheight) And baller.Top < (leftpaddle.Top + paddler.returnlefth) Then 'hits the paddle
+                If baller.Left <= paddler.returnleftface Then
+
+                    Randomize()
+                    Select Case CInt((Rnd() * 6) + 0)
+                        Case 0
+                            ballers.setvely(-5)   'this all basically sends the ball the otherway and randomly choses a vector for it to be sent at
+                            ballers.setvelx(2)
+                        Case 1
+                            ballers.setvely(-4)
+                            ballers.setvelx(3) 'all x vel is positive as it goes left to right
+                        Case 2
+                            ballers.setvely(-3)
+                            ballers.setvelx(4)
+                        Case 3
+                            ballers.setvely(0)
+                            ballers.setvelx(5)
+                        Case 4
+                            ballers.setvely(3)
+                            ballers.setvelx(4)
+                        Case 5
+                            ballers.setvely(4)
+                            ballers.setvelx(3)
+                        Case 6
+                            ballers.setvely(5)
+                            ballers.setvelx(2)
+                    End Select
+                End If
+            Else
+                If baller.Left <= courter.returnleftbound Then
+
+                    scorer.scoreapoint(Me, paddler, scorer, ballers)
+                End If
+            End If
+        ElseIf ballers.returnvelx > 0 Then 'ball is moving from left to right
+            If baller.Top > (rightpaddle.Top - ballers.returnballheight) And baller.Top < (rightpaddle.Top + paddler.returnrighth) Then
+                If (baller.Left + ballers.returnballwidth) > rightpaddle.Left Then
+
+
+                    Select Case CInt((Rnd() * 6) + 0)
+                        Case 0
+                            ballers.setvely(-5)
+                            ballers.setvelx(-2) 'same as above but for right paddle
+                        Case 1
+                            ballers.setvely(-4)
+                            ballers.setvelx(-3)
+                        Case 2
+                            ballers.setvely(-3)
+                            ballers.setvelx(-4)
+                        Case 3
+                            ballers.setvely(0)
+                            ballers.setvelx(-5)
+                        Case 4
+                            ballers.setvely(3)
+                            ballers.setvelx(-4)
+                        Case 5
+                            ballers.setvely(4)
+                            ballers.setvelx(-3)
+                        Case 6
+                            ballers.setvely(5)
+                            ballers.setvelx(-2)
+                    End Select
+
+                End If
+            Else
+                If baller.Left > (courter.returnrightbound - ballers.returnballwidth) Then
+
+                    scorer.scoreapoint(Me, paddler, scorer, ballers)
+                End If
+            End If
+        End If
+    End Sub
 
     Private Sub paddletimer_Tick(sender As Object, e As EventArgs) Handles paddletimer.Tick
-        'this is the AI for the left bat but it is rather dodgy but i tried
+        'this is the bot code for the left bat but it is rather dodgy but i tried
 
         If ballers.returnvelx < 0 Then 'detects when the balls moving towards it 
             If (baller.Top + ballers.returnballheight / 2) > (leftpaddle.Top + paddler.returnlefth / 2) Then ' if balls above center
@@ -57,9 +146,6 @@
             End If
         End If
 
-        'baller.Left < (courter.returncentercourt - ballers.returnballwidth / 2) And
-
-
 
         'make sure left paddle is between top and bottom borders of court
         If leftpaddle.Top < courter.returntopbound Then
@@ -79,122 +165,22 @@
 
         'used to test but basically hacks for user
         If hacks = True Then
-            rightpaddle.Top = baller.Top - 5
+            rightpaddle.Top = baller.Top - 10
         End If
     End Sub
 
-    Private Sub balltimer_Tick(sender As Object, e As EventArgs) Handles balltimer.Tick
-        baller.Top = baller.Top + ballers.returnvely 'move ball up or down by vy pixels
-        baller.Left = baller.Left + ballers.returnvelx 'move ball left or right by vx pixels
 
-        If baller.Top < courter.returntopbound Then
-            baller.Top = courter.returntopbound
-        End If
-        'keep ball below upper boundary of court
-
-        If baller.Top > (courter.returnbottombound - ballers.returnballheight) Then
-            baller.Top = (courter.returnbottombound - ballers.returnballheight)
-        End If
-        'keep ball above lower boundary of court
-        If baller.Top <= courter.returntopbound Or baller.Top >= (courter.returnbottombound - ballers.returnballheight) Then
-            ballers.setvely(-1 * ballers.returnvely)
-        End If
-        'make ball "bounce"(change vertical direction of ball)
-        If ballers.returnvelx < 0 Then 'ball is moving from right to left
-            If baller.Top > (leftpaddle.Top - ballers.returnballheight) And baller.Top < (leftpaddle.Top + paddler.returnlefth) Then
-                'vertical coordinates of ball and left paddle overlap
-                If baller.Left <= paddler.returnleftface Then 'ball has made contact with left paddle
-                    'change direction of ball and generate x and y vector values for ball
-                    'based on randon selection of paddleZone values (+3 to -3)
-                    Randomize()
-                    paddler.setpaddlezone(CInt((Rnd() * 6) - 3))
-                    Select Case paddler.returnpaddlezone()
-                        Case 3
-                            ballers.setvely(-5)
-                            ballers.setvelx(2)
-                        Case 2
-                            ballers.setvely(-4)
-                            ballers.setvelx(3)
-                        Case 1
-                            ballers.setvely(-3)
-                            ballers.setvelx(4)
-                        Case 0
-                            ballers.setvely(0)
-                            ballers.setvelx(5)
-                        Case -1
-                            ballers.setvely(3)
-                            ballers.setvelx(4)
-                        Case -2
-                            ballers.setvely(4)
-                            ballers.setvelx(3)
-                        Case -3
-                            ballers.setvely(5)
-                            ballers.setvelx(2)
-                    End Select
-                End If
-            Else
-                If baller.Left <= courter.returnleftbound Then
-                    'vertical coordinates of ball and left paddle do not overlap
-                    'and ball has reached left boundary of court
-                    scorer.scoreapoint(Me, paddler, scorer, ballers)
-                End If
-            End If
-        ElseIf ballers.returnvelx > 0 Then 'ball is moving from left to right
-            If baller.Top > (rightpaddle.Top - ballers.returnballheight) And baller.Top < (rightpaddle.Top + paddler.returnrighth) Then
-                'vertical coordinates of ball and right paddle overlap
-                If (baller.Left + ballers.returnballwidth) > rightpaddle.Left Then
-                    'ball has made contact with right paddle
-
-                    'change direction of ball and generate x and y vector values for ball
-                    'depending on calculated paddleZone value (+3 to -3)
-                    Select Case paddler.returnpaddlezone()
-                        Case 3
-                            ballers.setvely(-5)
-                            ballers.setvelx(-2)
-                        Case 2
-                            ballers.setvely(-4)
-                            ballers.setvelx(-3)
-                        Case 1
-                            ballers.setvely(-3)
-                            ballers.setvelx(-4)
-                        Case 0
-                            ballers.setvely(0)
-                            ballers.setvelx(-5)
-                        Case -1
-                            ballers.setvely(3)
-                            ballers.setvelx(-4)
-                        Case -2
-                            ballers.setvely(4)
-                            ballers.setvelx(-3)
-                        Case -3
-                            ballers.setvely(5)
-                            ballers.setvelx(-2)
-                    End Select
-
-                End If
-            Else
-                If baller.Left > (courter.returnrightbound - ballers.returnballwidth) Then
-                    'vertical coordinates of ball and right paddle do not overlap
-                    'and ball has reached right boundary of court
-                    scorer.scoreapoint(Me, paddler, scorer, ballers)
-                End If
-            End If
-        End If
-    End Sub
 
     Private Sub play_Click(sender As Object, e As EventArgs) Handles play.Click
-        baller.Top = rightpaddle.Top + paddler.returnrighth / 2 - ballers.returnballheight / 2
-        'position ball in line with centre of right paddle
+        baller.Top = rightpaddle.Top + paddler.returnrighth / 2 - ballers.returnballheight / 2 'resets positions
         baller.Left = paddler.returnrightface - baller.Width
-        'place ball immediately to left of right paddle
-        baller.Visible = True 'make ball visible
-        ballers.setvelx(-5) 'set ball's x vector to -5
-        'generate random y vector value for ball (5 to -5)
+        baller.Visible = True
+        ballers.setvelx(-5) 'this will make sure its going to the bot to start and then it will randomly pick y vector to make it more random
         Randomize()
-        ballers.setvely((Rnd() * 10) - 5)
-        paddletimer.Enabled = True 'start tmrPaddle
-        balltimer.Enabled = True 'start tmrBall
-        play.Enabled = False 'disable Start button
+        ballers.setvely(CInt(Rnd() * 8) - 8)
+        paddletimer.Enabled = True
+        balltimer.Enabled = True
+        play.Enabled = False
     End Sub
 
     Private Sub Pause_Click(sender As Object, e As EventArgs) Handles Pause.Click
@@ -223,7 +209,7 @@
     Protected Overrides Function ProcessCmdKey(ByRef msg As Message, ByVal keyData As Keys) As Boolean
         If balltimer.Enabled = True Then
             If keyData = Keys.Up Then
-                rightpaddle.Top -= 10
+                rightpaddle.Top -= 10 'detects key presses for up down and turn on cheats
             End If
             If keyData = Keys.Down Then
                 rightpaddle.Top += 10

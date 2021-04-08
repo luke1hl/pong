@@ -1,5 +1,4 @@
 ﻿Public Class Cpaddle
-    Protected paddleZone As Integer 'the paddlezone
     Protected lefth As Integer
     Protected righth As Integer 'left and right paddle heights
     Protected lefttop As Integer
@@ -7,12 +6,7 @@
     Protected leftface As Integer
     Protected rightface As Integer 'x coordinates face of paddle
 
-    Sub setpaddlezone(input As Integer)
-        paddleZone = input
-    End Sub
-    Function returnpaddlezone()
-        Return paddleZone
-    End Function
+
 
     Sub setlefth(input As Integer)
         lefth = input

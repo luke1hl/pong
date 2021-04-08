@@ -6,7 +6,7 @@
     Private scorer As New Cscore
     Private counter As Integer = 0 'counts everytime game ends
     Private paused As Boolean = False 'detects wether or not the game is paused
-
+    Private hacks As Boolean = False
 
 
     Private Sub pong_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -15,7 +15,7 @@
         ballers.setballheight(baller.Height)
 
         courter.setleftbound(pingpongtable.Left + 5) 'sets where the boarders are for the ping pong table
-        courter.setrightbound(pingpongtable.Left + pingpongtable.Width - 5)
+        courter.setrightbound(pingpongtable.Left + pingpongtable.Width - 5) 'basically makes a mini rectangle in the rectangle
         courter.settopbound(pingpongtable.Top + 5)
         courter.setbottombound(pingpongtable.Top + pingpongtable.Height - 5)
         courter.setcentercourt(pingpongtable.Left + pingpongtable.Width / 2)
@@ -34,20 +34,20 @@
 
 
     Private Sub paddletimer_Tick(sender As Object, e As EventArgs) Handles paddletimer.Tick
-        'this is the AI for the left bat but it is rather booky so i tried
+        'this is the AI for the left bat but it is rather dodgy but i tried
 
-        If baller.Left < (courter.returncentercourt - ballers.returnballwidth / 2) And ballers.returnvelx < 0 Then 'says when ball is on left side
-            If (baller.Top + ballers.returnballheight / 2) > (leftpaddle.Top + paddler.returnlefth / 2) Then ' if balls in bottom half of the court 
-                If (leftpaddle.Top + paddler.returnlefth) < courter.returnbottombound Then 'detects if paddle is at bottom of court
-                    leftpaddle.Top += 3 'moves left paddle down 
+        If ballers.returnvelx < 0 Then 'detects when the balls moving towards it 
+            If (baller.Top + ballers.returnballheight / 2) > (leftpaddle.Top + paddler.returnlefth / 2) Then ' if balls above center
+                If (leftpaddle.Top + paddler.returnlefth) < courter.returnbottombound Then 'means it won't move if its already at the bottom of the court
+                    leftpaddle.Top += 3 'moves computer paddle down 
                 End If
-            ElseIf (baller.Top + ballers.returnballheight / 2) < (leftpaddle.Top + paddler.returnlefth / 2) Then 'we know ballabovecenter
-                If leftpaddle.Top > courter.returntopbound Then 'paddle is not yet at top of court
-                    leftpaddle.Top -= 3 'move left paddle up 
+            ElseIf (baller.Top + ballers.returnballheight / 2) < (leftpaddle.Top + paddler.returnlefth / 2) Then 'balls above center
+                If leftpaddle.Top > courter.returntopbound Then 'wont move if already at top
+                    leftpaddle.Top -= 3 'move computer paddle up 
                 End If
             End If
 
-        Else 'return paddle to initial position if ball not on left or moving towards it
+        Else 'moves back to the middle after hitting the ball
             If leftpaddle.Top < paddler.returnlefttop Then
 
                 leftpaddle.Top += 1
@@ -57,7 +57,7 @@
             End If
         End If
 
-
+        'baller.Left < (courter.returncentercourt - ballers.returnballwidth / 2) And
 
 
 
@@ -74,6 +74,12 @@
             rightpaddle.Top = courter.returntopbound
         ElseIf rightpaddle.Top > (courter.returnbottombound - paddler.returnrighth) Then
             rightpaddle.Top = (courter.returnbottombound - paddler.returnrighth)
+        End If
+
+
+        'used to test but basically hacks for user
+        If hacks = True Then
+            rightpaddle.Top = baller.Top - 5
         End If
     End Sub
 
@@ -221,6 +227,13 @@
             End If
             If keyData = Keys.Down Then
                 rightpaddle.Top += 10
+            End If
+            If keyData = Keys.L Then
+                If hacks = True Then
+                    hacks = False
+                Else
+                    hacks = True
+                End If
             End If
         End If
 

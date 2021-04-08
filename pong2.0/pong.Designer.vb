@@ -41,7 +41,7 @@ Partial Class pong
         'baller
         '
         Me.baller.BackColor = System.Drawing.Color.LawnGreen
-        Me.baller.Location = New System.Drawing.Point(324, 244)
+        Me.baller.Location = New System.Drawing.Point(393, 314)
         Me.baller.Name = "baller"
         Me.baller.Size = New System.Drawing.Size(16, 16)
         Me.baller.TabIndex = 1
@@ -49,7 +49,7 @@ Partial Class pong
         'leftpaddle
         '
         Me.leftpaddle.BackColor = System.Drawing.Color.LawnGreen
-        Me.leftpaddle.Location = New System.Drawing.Point(23, 212)
+        Me.leftpaddle.Location = New System.Drawing.Point(36, 272)
         Me.leftpaddle.Name = "leftpaddle"
         Me.leftpaddle.Size = New System.Drawing.Size(16, 80)
         Me.leftpaddle.TabIndex = 2
@@ -57,7 +57,7 @@ Partial Class pong
         'rightpaddle
         '
         Me.rightpaddle.BackColor = System.Drawing.Color.LawnGreen
-        Me.rightpaddle.Location = New System.Drawing.Point(625, 212)
+        Me.rightpaddle.Location = New System.Drawing.Point(732, 272)
         Me.rightpaddle.Name = "rightpaddle"
         Me.rightpaddle.Size = New System.Drawing.Size(16, 80)
         Me.rightpaddle.TabIndex = 3
@@ -67,7 +67,7 @@ Partial Class pong
         Me.leftpaddlescore.AutoSize = True
         Me.leftpaddlescore.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.leftpaddlescore.ForeColor = System.Drawing.Color.White
-        Me.leftpaddlescore.Location = New System.Drawing.Point(210, 40)
+        Me.leftpaddlescore.Location = New System.Drawing.Point(23, 9)
         Me.leftpaddlescore.Name = "leftpaddlescore"
         Me.leftpaddlescore.Size = New System.Drawing.Size(29, 31)
         Me.leftpaddlescore.TabIndex = 4
@@ -78,7 +78,7 @@ Partial Class pong
         Me.rightpaddlescore.AutoSize = True
         Me.rightpaddlescore.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rightpaddlescore.ForeColor = System.Drawing.Color.White
-        Me.rightpaddlescore.Location = New System.Drawing.Point(420, 40)
+        Me.rightpaddlescore.Location = New System.Drawing.Point(729, 9)
         Me.rightpaddlescore.Name = "rightpaddlescore"
         Me.rightpaddlescore.Size = New System.Drawing.Size(29, 31)
         Me.rightpaddlescore.TabIndex = 5
@@ -87,7 +87,7 @@ Partial Class pong
         'play
         '
         Me.play.BackColor = System.Drawing.Color.GreenYellow
-        Me.play.Location = New System.Drawing.Point(726, 13)
+        Me.play.Location = New System.Drawing.Point(769, 1)
         Me.play.Name = "play"
         Me.play.Size = New System.Drawing.Size(137, 96)
         Me.play.TabIndex = 6
@@ -98,7 +98,7 @@ Partial Class pong
         'Pause
         '
         Me.Pause.BackColor = System.Drawing.Color.LawnGreen
-        Me.Pause.Location = New System.Drawing.Point(726, 103)
+        Me.Pause.Location = New System.Drawing.Point(769, 184)
         Me.Pause.Name = "Pause"
         Me.Pause.Size = New System.Drawing.Size(137, 97)
         Me.Pause.TabIndex = 7
@@ -109,7 +109,7 @@ Partial Class pong
         'reset
         '
         Me.reset.BackColor = System.Drawing.Color.Lime
-        Me.reset.Location = New System.Drawing.Point(726, 197)
+        Me.reset.Location = New System.Drawing.Point(769, 93)
         Me.reset.Name = "reset"
         Me.reset.Size = New System.Drawing.Size(137, 95)
         Me.reset.TabIndex = 8
@@ -122,9 +122,10 @@ Partial Class pong
         Me.Escape.BackColor = System.Drawing.Color.Red
         Me.Escape.Font = New System.Drawing.Font("Microsoft Sans Serif", 72.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Escape.ForeColor = System.Drawing.Color.White
-        Me.Escape.Location = New System.Drawing.Point(726, 360)
+        Me.Escape.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Escape.Location = New System.Drawing.Point(791, 385)
         Me.Escape.Name = "Escape"
-        Me.Escape.Size = New System.Drawing.Size(137, 132)
+        Me.Escape.Size = New System.Drawing.Size(99, 99)
         Me.Escape.TabIndex = 9
         Me.Escape.TabStop = False
         Me.Escape.Text = "X"
@@ -142,9 +143,9 @@ Partial Class pong
         '
         Me.pingpongtable.BackColor = System.Drawing.Color.Black
         Me.pingpongtable.ErrorImage = Nothing
-        Me.pingpongtable.Location = New System.Drawing.Point(12, 12)
+        Me.pingpongtable.Location = New System.Drawing.Point(2, 1)
         Me.pingpongtable.Name = "pingpongtable"
-        Me.pingpongtable.Size = New System.Drawing.Size(640, 480)
+        Me.pingpongtable.Size = New System.Drawing.Size(771, 592)
         Me.pingpongtable.TabIndex = 0
         Me.pingpongtable.TabStop = False
         '
@@ -153,7 +154,7 @@ Partial Class pong
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(911, 541)
+        Me.ClientSize = New System.Drawing.Size(906, 593)
         Me.Controls.Add(Me.Escape)
         Me.Controls.Add(Me.reset)
         Me.Controls.Add(Me.Pause)

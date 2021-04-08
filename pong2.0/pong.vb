@@ -36,8 +36,8 @@
     Private Sub paddletimer_Tick(sender As Object, e As EventArgs) Handles paddletimer.Tick
 
 
-        If baller.Left < (courter.returncentercourt - ballers.returnballwidth / 2) And ballers.returnvelx < 0 Then 'we know ball is on left traveling left
-            If (baller.Top + ballers.returnballheight / 2) > (leftpaddle.Top + paddler.returnlefth / 2) Then ' we know ball is below center 
+        If baller.Left < (courter.returncentercourt - ballers.returnballwidth / 2) And ballers.returnvelx < 0 Then 'says when ball is on left side
+            If (baller.Top + ballers.returnballheight / 2) > (leftpaddle.Top + paddler.returnlefth / 2) Then ' if balls in bottom half of the court 
                 If (leftpaddle.Top + paddler.returnlefth) < courter.returnbottombound Then 'detects if paddle is at bottom of court
                     leftpaddle.Top += 4 'moves left paddle down 
                 End If
@@ -130,7 +130,7 @@
                 If baller.Left <= courter.returnleftbound Then
                     'vertical coordinates of ball and left paddle do not overlap
                     'and ball has reached left boundary of court
-                    scoreapoint()
+                    scorer.scoreapoint(Me, paddler, scorer, ballers)
                 End If
             End If
         ElseIf ballers.returnvelx > 0 Then 'ball is moving from left to right
@@ -170,50 +170,30 @@
                 If baller.Left > (courter.returnrightbound - ballers.returnballwidth) Then
                     'vertical coordinates of ball and right paddle do not overlap
                     'and ball has reached right boundary of court
-                    scoreapoint()
+                    scorer.scoreapoint(Me, paddler, scorer, ballers)
                 End If
             End If
         End If
     End Sub
 
-    Private Sub scoreapoint()
-        balltimer.Enabled = False
-        paddletimer.Enabled = False
-        If baller.Left < paddler.returnleftface Then
-            scorer.setrightscore(scorer.returnrightscore + 1)
-            rightpaddlescore.Text += 1
-        ElseIf baller.Left + ballers.returnballwidth > paddler.returnrightface Then
-            scorer.setleftscore(scorer.returnleftscore + 1)
-            leftpaddlescore.Text += 1
-        End If
-        baller.Visible = False
-        If scorer.returnleftscore = 10 Then
-            MsgBox("computer wins")
-            Application.Restart()
-        ElseIf scorer.returnrightscore = 10 Then
-            MsgBox("user wins")
-            Application.Restart()
-        Else
-            endofround()
-        End If
-    End Sub
-    Private Sub endofround()
-        leftpaddle.Top = paddler.returnlefttop 'reset left paddle position
-        rightpaddle.Top = paddler.returnrighttop 'reset right paddle position
 
-        baller.Top = rightpaddle.Top + paddler.returnrighth / 2 - ballers.returnballheight / 2
-        'position ball in line with centre of right paddle
-        baller.Left = paddler.returnrightface - baller.Width
-        'place ball immediately to left of right paddle
-        ballers.setvelx(-5) 'set ball's x vector value to -5
-        'generate random y vector value for ball (5 to -5
-        Randomize()
-        ballers.setvely((Rnd() * 10) - 5)
-        baller.Visible = True 'restore visibility of ball
+    'Private Sub endofround()
+    '    leftpaddle.Top = paddler.returnlefttop 'reset left paddle position
+    '    rightpaddle.Top = paddler.returnrighttop 'reset right paddle position
 
-        balltimer.Enabled = True 'restart tmrBall
-        paddletimer.Enabled = True 'restart tmrPaddle
-    End Sub
+    '    baller.Top = rightpaddle.Top + paddler.returnrighth / 2 - ballers.returnballheight / 2
+    '    'position ball in line with centre of right paddle
+    '    baller.Left = paddler.returnrightface - baller.Width
+    '    'place ball immediately to left of right paddle
+    '    ballers.setvelx(-5) 'set ball's x vector value to -5
+    '    'generate random y vector value for ball (5 to -5
+    '    Randomize()
+    '    ballers.setvely((Rnd() * 10) - 5)
+    '    baller.Visible = True 'restore visibility of ball
+
+    '    balltimer.Enabled = True 'restart tmrBall
+    '    paddletimer.Enabled = True 'restart tmrPaddle
+    'End Sub
 
 
     Private Sub play_Click(sender As Object, e As EventArgs) Handles play.Click

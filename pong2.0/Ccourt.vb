@@ -39,7 +39,23 @@
     Function returncentercourt()
         Return centercourt
     End Function
+    Sub endofround(form As pong, ballers As Cball, paddler As Cpaddle)
+        form.leftpaddle.Top = paddler.returnlefttop 'reset left paddle position
+        form.rightpaddle.Top = paddler.returnrighttop 'reset right paddle position
 
+        form.baller.Top = form.rightpaddle.Top + paddler.returnrighth / 2 - ballers.returnballheight / 2
+        'position ball in line with centre of right paddle
+        form.baller.Left = paddler.returnrightface - form.baller.Width
+        'place ball immediately to left of right paddle
+        ballers.setvelx(-5) 'set ball's x vector value to -5
+        'generate random y vector value for ball (5 to -5
+        Randomize()
+        ballers.setvely((Rnd() * 10) - 5)
+        form.baller.Visible = True 'restore visibility of ball
+
+        form.balltimer.Enabled = True 'restart tmrBall
+        form.paddletimer.Enabled = True 'restart tmrPaddle
+    End Sub
 
 
 

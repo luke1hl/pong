@@ -25,7 +25,6 @@ Partial Class pong
         Me.components = New System.ComponentModel.Container()
         Me.baller = New System.Windows.Forms.Label()
         Me.leftpaddle = New System.Windows.Forms.Label()
-        Me.pingpongtable = New System.Windows.Forms.PictureBox()
         Me.rightpaddle = New System.Windows.Forms.Label()
         Me.leftpaddlescore = New System.Windows.Forms.Label()
         Me.rightpaddlescore = New System.Windows.Forms.Label()
@@ -35,6 +34,7 @@ Partial Class pong
         Me.Escape = New System.Windows.Forms.Button()
         Me.balltimer = New System.Windows.Forms.Timer(Me.components)
         Me.paddletimer = New System.Windows.Forms.Timer(Me.components)
+        Me.pingpongtable = New System.Windows.Forms.PictureBox()
         CType(Me.pingpongtable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -53,16 +53,6 @@ Partial Class pong
         Me.leftpaddle.Name = "leftpaddle"
         Me.leftpaddle.Size = New System.Drawing.Size(16, 80)
         Me.leftpaddle.TabIndex = 2
-        '
-        'pingpongtable
-        '
-        Me.pingpongtable.BackColor = System.Drawing.Color.Black
-        Me.pingpongtable.ErrorImage = Nothing
-        Me.pingpongtable.Location = New System.Drawing.Point(12, 12)
-        Me.pingpongtable.Name = "pingpongtable"
-        Me.pingpongtable.Size = New System.Drawing.Size(640, 480)
-        Me.pingpongtable.TabIndex = 0
-        Me.pingpongtable.TabStop = False
         '
         'rightpaddle
         '
@@ -101,6 +91,7 @@ Partial Class pong
         Me.play.Name = "play"
         Me.play.Size = New System.Drawing.Size(137, 96)
         Me.play.TabIndex = 6
+        Me.play.TabStop = False
         Me.play.Text = "play"
         Me.play.UseVisualStyleBackColor = False
         '
@@ -111,6 +102,7 @@ Partial Class pong
         Me.Pause.Name = "Pause"
         Me.Pause.Size = New System.Drawing.Size(137, 97)
         Me.Pause.TabIndex = 7
+        Me.Pause.TabStop = False
         Me.Pause.Text = "pause"
         Me.Pause.UseVisualStyleBackColor = False
         '
@@ -121,6 +113,7 @@ Partial Class pong
         Me.reset.Name = "reset"
         Me.reset.Size = New System.Drawing.Size(137, 95)
         Me.reset.TabIndex = 8
+        Me.reset.TabStop = False
         Me.reset.Text = "reset"
         Me.reset.UseVisualStyleBackColor = False
         '
@@ -133,6 +126,7 @@ Partial Class pong
         Me.Escape.Name = "Escape"
         Me.Escape.Size = New System.Drawing.Size(137, 132)
         Me.Escape.TabIndex = 9
+        Me.Escape.TabStop = False
         Me.Escape.Text = "X"
         Me.Escape.UseVisualStyleBackColor = False
         '
@@ -143,6 +137,16 @@ Partial Class pong
         'paddletimer
         '
         Me.paddletimer.Interval = 10
+        '
+        'pingpongtable
+        '
+        Me.pingpongtable.BackColor = System.Drawing.Color.Black
+        Me.pingpongtable.ErrorImage = Nothing
+        Me.pingpongtable.Location = New System.Drawing.Point(12, 12)
+        Me.pingpongtable.Name = "pingpongtable"
+        Me.pingpongtable.Size = New System.Drawing.Size(640, 480)
+        Me.pingpongtable.TabIndex = 0
+        Me.pingpongtable.TabStop = False
         '
         'pong
         '

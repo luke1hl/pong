@@ -34,16 +34,16 @@
 
 
     Private Sub paddletimer_Tick(sender As Object, e As EventArgs) Handles paddletimer.Tick
-
+        'this is the AI for the left bat but it is rather booky so i tried
 
         If baller.Left < (courter.returncentercourt - ballers.returnballwidth / 2) And ballers.returnvelx < 0 Then 'says when ball is on left side
             If (baller.Top + ballers.returnballheight / 2) > (leftpaddle.Top + paddler.returnlefth / 2) Then ' if balls in bottom half of the court 
                 If (leftpaddle.Top + paddler.returnlefth) < courter.returnbottombound Then 'detects if paddle is at bottom of court
-                    leftpaddle.Top += 4 'moves left paddle down 
+                    leftpaddle.Top += 3 'moves left paddle down 
                 End If
             ElseIf (baller.Top + ballers.returnballheight / 2) < (leftpaddle.Top + paddler.returnlefth / 2) Then 'we know ballabovecenter
                 If leftpaddle.Top > courter.returntopbound Then 'paddle is not yet at top of court
-                    leftpaddle.Top -= 4 'move left paddle up 
+                    leftpaddle.Top -= 3 'move left paddle up 
                 End If
             End If
 
@@ -175,26 +175,6 @@
             End If
         End If
     End Sub
-
-
-    'Private Sub endofround()
-    '    leftpaddle.Top = paddler.returnlefttop 'reset left paddle position
-    '    rightpaddle.Top = paddler.returnrighttop 'reset right paddle position
-
-    '    baller.Top = rightpaddle.Top + paddler.returnrighth / 2 - ballers.returnballheight / 2
-    '    'position ball in line with centre of right paddle
-    '    baller.Left = paddler.returnrightface - baller.Width
-    '    'place ball immediately to left of right paddle
-    '    ballers.setvelx(-5) 'set ball's x vector value to -5
-    '    'generate random y vector value for ball (5 to -5
-    '    Randomize()
-    '    ballers.setvely((Rnd() * 10) - 5)
-    '    baller.Visible = True 'restore visibility of ball
-
-    '    balltimer.Enabled = True 'restart tmrBall
-    '    paddletimer.Enabled = True 'restart tmrPaddle
-    'End Sub
-
 
     Private Sub play_Click(sender As Object, e As EventArgs) Handles play.Click
         baller.Top = rightpaddle.Top + paddler.returnrighth / 2 - ballers.returnballheight / 2

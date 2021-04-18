@@ -39,7 +39,7 @@
     Function returncentercourt()
         Return centercourt
     End Function
-    Sub endofround(form As pong, ballers As Cball, paddler As Cpaddle)
+    Sub endofround(form As pong, ballers As Cball, paddler As Cpaddle, bot As Boolean)
         form.leftpaddle.Top = paddler.returnlefttop
         form.rightpaddle.Top = paddler.returnrighttop
 
@@ -51,7 +51,7 @@
         form.baller.Visible = True
 
         form.balltimer.Enabled = True
-        form.paddletimer.Enabled = True
+        form.paddletimer.Enabled = bot
     End Sub
 
 

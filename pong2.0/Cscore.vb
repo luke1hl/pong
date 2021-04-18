@@ -32,7 +32,7 @@
     Function returnlastpoint()
         Return lastPoint
     End Function
-    Sub scoreapoint(form As pong, paddler As Cpaddle, scorer As Cscore, ballers As Cball)
+    Sub scoreapoint(form As pong, paddler As Cpaddle, scorer As Cscore, ballers As Cball, bot As Boolean)
         form.balltimer.Enabled = False
         form.paddletimer.Enabled = False
         If form.baller.Left < paddler.returnleftface Then
@@ -50,7 +50,7 @@
             MsgBox("user wins")
             Application.Restart()
         Else
-            courter.endofround(form, ballers, paddler)
+            courter.endofround(form, ballers, paddler, bot)
         End If
     End Sub
 End Class

@@ -35,6 +35,7 @@ Partial Class pong
         Me.balltimer = New System.Windows.Forms.Timer(Me.components)
         Me.paddletimer = New System.Windows.Forms.Timer(Me.components)
         Me.pingpongtable = New System.Windows.Forms.PictureBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.pingpongtable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -149,12 +150,24 @@ Partial Class pong
         Me.pingpongtable.TabIndex = 0
         Me.pingpongtable.TabStop = False
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.LightGreen
+        Me.Button1.Location = New System.Drawing.Point(769, 272)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(137, 97)
+        Me.Button1.TabIndex = 10
+        Me.Button1.TabStop = False
+        Me.Button1.Text = "player 2"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'pong
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(906, 593)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Escape)
         Me.Controls.Add(Me.reset)
         Me.Controls.Add(Me.Pause)
@@ -186,4 +199,5 @@ Partial Class pong
     Friend WithEvents Escape As Button
     Friend WithEvents balltimer As Timer
     Friend WithEvents paddletimer As Timer
+    Friend WithEvents Button1 As Button
 End Class

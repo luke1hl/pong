@@ -7,10 +7,11 @@
     Private counter As Integer = 0 'counts everytime game ends
     Private paused As Boolean = False 'detects wether or not the game is paused
     Private hacks As Boolean = False 'used to activate user hacks
+    Private player2 As Boolean = False 'used to enable the AI
 
 
     Private Sub pong_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        player2 = False
         ballers.setballwidth(baller.Width) 'sets the variables for the size of the ball
         ballers.setballheight(baller.Height)
 
@@ -80,7 +81,7 @@
             Else
                 If baller.Left <= courter.returnleftbound Then
 
-                    scorer.scoreapoint(Me, paddler, scorer, ballers)
+                    scorer.scoreapoint(Me, paddler, scorer, ballers, player2)
                 End If
             End If
         ElseIf ballers.returnvelx > 0 Then 'ball is moving from left to right
@@ -116,7 +117,7 @@
             Else
                 If baller.Left > (courter.returnrightbound - ballers.returnballwidth) Then
 
-                    scorer.scoreapoint(Me, paddler, scorer, ballers)
+                    scorer.scoreapoint(Me, paddler, scorer, ballers, player2)
                 End If
             End If
         End If
@@ -178,7 +179,7 @@
         ballers.setvelx(-5) 'this will make sure its going to the bot to start and then it will randomly pick y vector to make it more random
         Randomize()
         ballers.setvely(CInt(Rnd() * 8) - 8)
-        paddletimer.Enabled = True
+        paddletimer.Enabled = player2
         balltimer.Enabled = True
         play.Enabled = False
     End Sub
@@ -214,6 +215,14 @@
             If keyData = Keys.Down Then
                 rightpaddle.Top += 10
             End If
+            If player2 = False Then
+                If keyData = Keys.W Then
+                    leftpaddle.Top -= 10
+                End If
+                If keyData = Keys.S Then
+                    leftpaddle.Top += 10
+                End If
+            End If
             If keyData = Keys.L Then
                 If hacks = True Then
                     hacks = False
@@ -224,4 +233,16 @@
         End If
 
     End Function
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If player2 = False Then
+            player2 = True
+            paddletimer.Enabled = player2
+            Button1.Text = "bot"
+        Else
+            player2 = False
+            paddletimer.Enabled = player2
+            Button1.Text = "player 2"
+        End If
+    End Sub
 End Class

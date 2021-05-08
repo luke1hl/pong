@@ -245,4 +245,8 @@
             Button1.Text = "player 2"
         End If
     End Sub
+
+    Private Sub pingpongtable_Click(sender As Object, e As EventArgs) Handles pingpongtable.Click
+
+    End Sub
 End Class

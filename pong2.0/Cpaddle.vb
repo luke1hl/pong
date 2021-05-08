@@ -7,7 +7,6 @@
     Protected rightface As Integer 'x coordinates face of paddle
 
 
-
     Sub setlefth(input As Integer)
         lefth = input
     End Sub
